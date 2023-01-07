@@ -1,0 +1,32 @@
+{
+  "name": "firestore_vc_space",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkawabat/firestore_vc_space.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tkawabat/firestore_vc_space/issues"
+  },
+  "homepage": "https://github.com/tkawabat/firestore_vc_space#readme",
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^2.0.5",
+    "jest": "^29.3.1",
+    "prettier": "^2.8.1"
+  },
+  "dependencies": {
+    "commander": "^9.4.1",
+    "firebase-admin": "^11.4.1",
+    "ts-node": "^10.9.1"
+  }
+}
