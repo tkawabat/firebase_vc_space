@@ -18,7 +18,7 @@ export const ServiceAccount: ConstObject = {
 
 export enum PlaceType {
     discord = 'discord',
-    twicasting = 'twicasting',
+    twitcasting = 'twitcasting',
     twitter = 'twitter',
     spoon = 'spoon',
     none = 'none',
@@ -29,3 +29,5 @@ export enum EnterType {
     follow = 'follow',
     password = 'password',
 }
+
+export const MaxRoomDescription = 140;

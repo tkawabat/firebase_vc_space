@@ -4,6 +4,7 @@ import { DocumentData } from '@google-cloud/firestore';
 import ModelBase from './ModelBase';
 import * as C from '../lib/Const';
 import * as ArrayUtil from '../lib/ArrayUtil';
+import * as RandomUtil from '../lib/RandomUtil';
 import { createUser } from './UserModel';
 
 
@@ -11,7 +12,7 @@ export interface Room extends DocumentData {
     ownerId: string
     ownerImage: string
     title: string
-    description: string | null
+    description: string
     place: C.PlaceType
     placeUrl: 'https://hogehoge',
     startTime: FirebaseFirestore.Timestamp,
@@ -32,7 +33,7 @@ export function createRoom(i: number): Room {
         ownerId: owner.id,
         ownerImage: owner.photo,
         title: 'test_room_'+i,
-        description: ArrayUtil.getRandom([null, 'xxxxx']),
+        description: RandomUtil.getRandomLengthText(C.MaxRoomDescription),
         place: C.PlaceType[placeType],
         placeUrl: 'https://hogehoge',
         startTime: admin.firestore.Timestamp.now(),
