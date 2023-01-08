@@ -19,7 +19,7 @@ export interface Room extends DocumentData {
     tags: Array<string>
     maxNumber: number
     enterType: C.EnterType
-    pass: string | null
+    password: string | null
     users: Array<string>
     updatedAt: FirebaseFirestore.Timestamp
 }
@@ -40,7 +40,7 @@ export function createRoom(i: number): Room {
         tags: [],
         maxNumber: 2 + Math.floor(Math.random() * 10),
         enterType: C.EnterType[enterType],
-        pass: 'pass',
+        password: 'pass',
         users: [],
         updatedAt: admin.firestore.Timestamp.now()
     }
