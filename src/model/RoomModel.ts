@@ -27,7 +27,7 @@ export interface Room extends DocumentData {
 export function createRoom(i: number): Room {
     const placeType = ArrayUtil.getRandom(Object.keys(C.PlaceType)) as C.PlaceType;
     const enterType = ArrayUtil.getRandom(Object.keys(C.EnterType)) as C.EnterType;
-    const owner = createUser(i);
+    const owner = createUser("test_" + i);
 
     const room: Room = {
         ownerId: owner.id,

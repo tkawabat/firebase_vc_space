@@ -7,7 +7,6 @@ import * as ArrayUtil from '../lib/ArrayUtil';
 
 
 export interface User extends DocumentData {
-    id: string,
     name: string
     photo: string
     tags: Array<string>
@@ -16,7 +15,7 @@ export interface User extends DocumentData {
     updatedAt: FirebaseFirestore.Timestamp
 }
 
-export function createUser(i: number): User {
+export function createUser(id: string): User {
     const photo = ArrayUtil.getRandom([
         'https://pbs.twimg.com/profile_images/448301181324894208/vqY_gIaL.jpeg',
         'https://pbs.twimg.com/profile_images/1201897412610031616/p3lYSGtp.jpg',
@@ -24,9 +23,7 @@ export function createUser(i: number): User {
         'https://pbs.twimg.com/profile_images/1248273712/Upload.jpg',
     ]);
 
-    const id = 'test_' + i;
     const user: User = {
-        id: id,
         name: id,
         photo: photo,
         tags: [],
@@ -50,8 +47,9 @@ export default class UserModel extends ModelBase {
 
         const batch: Array<any> = [];
         for (let i = 0; i < n; i++) {
-            const user: User = createUser(i);
-            batch.push({id: user.id, data:user})
+            const id = 'test_' + i;
+            const user: User = createUser(id);
+            batch.push({id: id, data:user})
         }
 
         await this.asyncBatch(C.BatchType.CreateWithId, batch);
