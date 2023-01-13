@@ -30,7 +30,7 @@ export function createRoom(i: number): Room {
     const owner = createUser("test_" + i);
 
     const room: Room = {
-        ownerId: owner.id,
+        ownerId: "test_" + i,
         ownerImage: owner.photo,
         title: 'test_room_'+i,
         description: RandomUtil.getRandomLengthText(C.MaxRoomDescription),
