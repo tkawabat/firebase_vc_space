@@ -30,4 +30,5 @@ export enum EnterType {
     password = 'password',
 }
 
+export const MaxGreeting = 140;
 export const MaxRoomDescription = 140;

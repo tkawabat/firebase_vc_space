@@ -4,11 +4,13 @@ import { DocumentData } from '@google-cloud/firestore';
 import ModelBase from './ModelBase';
 import * as C from '../lib/Const';
 import * as ArrayUtil from '../lib/ArrayUtil';
+import * as RandomUtil from '../lib/RandomUtil';
 
 
 export interface User extends DocumentData {
     name: string
     photo: string
+    greeting: string
     tags: Array<string>
     twitterId: string
     blocks: Array<string>
@@ -26,6 +28,7 @@ export function createUser(id: string): User {
     const user: User = {
         name: id,
         photo: photo,
+        greeting: RandomUtil.getRandomLengthText(C.MaxGreeting),
         tags: [],
         twitterId: id,
         blocks: [],
