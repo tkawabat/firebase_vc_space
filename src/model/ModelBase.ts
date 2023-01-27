@@ -31,10 +31,10 @@ export default class ModelBase {
         while (!current.done) {
             switch (type) {
                 case C.BatchType.Create:
-                    current.value.forEach((v) => batch.create(this._ref.doc(), v.data));
+                    current.value.forEach((v) => batch.set(this._ref.doc(), v.data));
                     break;
                 case C.BatchType.CreateWithId:
-                    current.value.forEach((v) => batch.create(this._ref.doc(v.id), v.data));
+                    current.value.forEach((v) => batch.set(this._ref.doc(v.id), v.data));
                     break;
                 case C.BatchType.Set:
                     //TODO

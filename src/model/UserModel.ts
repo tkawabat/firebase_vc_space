@@ -14,6 +14,7 @@ export interface User extends DocumentData {
     tags: Array<string>
     twitterId: string
     blocks: Array<string>
+    times: Array<FirebaseFirestore.Timestamp>
     updatedAt: FirebaseFirestore.Timestamp
 }
 
@@ -32,6 +33,7 @@ export function createUser(id: string): User {
         tags: [],
         twitterId: id,
         blocks: [],
+        times: [],
         updatedAt: admin.firestore.Timestamp.now(),
     }
     return user;
