@@ -6,6 +6,25 @@
     * Constファイルにパスを書き込む
 ```
 
+### 環境切り替え
+```
+$ firebase use default
+$ firebase use production
+```
+
+### ルールのデプロイ
+```
+$ firebase deploy --only firestore:rules
+```
+
+### テスト
+```
+$ firebase emulators:start --only firestore
+
+# 別ウィンドウ
+$ npm run test
+```
+
 ### CLIコマンド例
 
 * テスト部屋を10個作成する
