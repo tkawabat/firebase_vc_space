@@ -8,9 +8,20 @@ import * as RandomUtil from '../lib/RandomUtil';
 import { createUser } from './UserModel';
 
 
+export interface RoomUser extends DocumentData {
+    id: string,
+    image: string,
+    roomUserType: C.RoomUserType,
+}
+
+export interface Chat extends DocumentData {
+    id: string,
+    userId: string,
+    text: string,
+    updatedAt: FirebaseFirestore.Timestamp,
+}
+
 export interface Room extends DocumentData {
-    ownerId: string
-    ownerImage: string
     title: string
     description: string
     place: C.PlaceType
@@ -20,7 +31,8 @@ export interface Room extends DocumentData {
     maxNumber: number
     enterType: C.EnterType
     password: string | null
-    users: Array<string>
+    users: Array<RoomUser>
+    chats: Array<Chat>
     updatedAt: FirebaseFirestore.Timestamp
 }
 
@@ -29,9 +41,14 @@ export function createRoom(i: number): Room {
     const enterType = ArrayUtil.getRandom(Object.keys(C.EnterType)) as C.EnterType;
     const owner = createUser("test_" + i);
 
+    const roomUser: RoomUser = {
+        id: "test_" + i,
+        image: owner.photo,
+        roomUserType: C.RoomUserType.admin,
+        updatedAt: admin.firestore.Timestamp.now(),
+    } 
+
     const room: Room = {
-        ownerId: "test_" + i,
-        ownerImage: owner.photo,
         title: 'test_room_'+i,
         description: RandomUtil.getRandomLengthText(C.MaxRoomDescription),
         place: C.PlaceType[placeType],
@@ -41,7 +58,8 @@ export function createRoom(i: number): Room {
         maxNumber: 2 + Math.floor(Math.random() * 10),
         enterType: C.EnterType[enterType],
         password: 'pass',
-        users: [],
+        users: [roomUser],
+        chats: [],
         updatedAt: admin.firestore.Timestamp.now()
     }
     return room;

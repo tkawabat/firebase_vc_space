@@ -20,7 +20,6 @@ export interface User extends DocumentData {
 
 export function createUser(id: string): User {
     const photo = ArrayUtil.getRandom([
-        'https://pbs.twimg.com/profile_images/448301181324894208/vqY_gIaL.jpeg',
         'https://pbs.twimg.com/profile_images/1201897412610031616/p3lYSGtp.jpg',
         'https://pbs.twimg.com/profile_images/979349742563053569/r5wHiGBH.jpg',
         'https://pbs.twimg.com/profile_images/1248273712/Upload.jpg',

@@ -16,6 +16,12 @@ export const ServiceAccount: ConstObject = {
 'prod': require('../../sec/vc-space-firebase-adminsdk-iua1h-63050e4a34.json'),
 }
 
+export enum RoomUserType {
+    admin = 'admin',
+    member = 'member',
+    offer = 'offer',
+}
+
 export enum PlaceType {
     discord = 'discord',
     twitcasting = 'twitcasting',
