@@ -26,13 +26,14 @@ export enum PlaceType {
     discord = 'discord',
     twitcasting = 'twitcasting',
     twitter = 'twitter',
+    zoom = 'zoom',
     spoon = 'spoon',
     none = 'none',
 }
 
 export enum EnterType {
     noLimit = 'noLimit',
-    follow = 'follow',
+    // follow = 'follow',
     password = 'password',
 }
 

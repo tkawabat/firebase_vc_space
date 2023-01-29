@@ -10,8 +10,9 @@ import { createUser } from './UserModel';
 
 export interface RoomUser extends DocumentData {
     id: string,
-    image: string,
+    photo: string,
     roomUserType: C.RoomUserType,
+    updatedAt: FirebaseFirestore.Timestamp,
 }
 
 export interface Chat extends DocumentData {
@@ -44,7 +45,7 @@ export function createRoom(i: number): Room {
 
     const roomUser: RoomUser = {
         id: "test_" + i,
-        image: owner.photo,
+        photo: owner.photo,
         roomUserType: C.RoomUserType.admin,
         updatedAt: admin.firestore.Timestamp.now(),
     } 
