@@ -16,6 +16,8 @@ export interface RoomUser extends DocumentData {
 
 export interface Chat extends DocumentData {
     userId: string,
+    name: string,
+    photo: string,
     text: string,
     updatedAt: FirebaseFirestore.Timestamp,
 }
