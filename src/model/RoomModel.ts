@@ -56,7 +56,7 @@ export function createRoom(i: number): Room {
         place: C.PlaceType[placeType],
         placeUrl: 'https://hogehoge',
         startTime: admin.firestore.Timestamp.now(),
-        tags: [],
+        tags: RandomUtil.takeRandom(['a','b','c','d','e']),
         maxNumber: 2 + Math.floor(Math.random() * 10),
         enterType: C.EnterType[enterType],
         password: 'pass',
@@ -81,9 +81,9 @@ export default class RoomModel extends ModelBase {
         const batch: Array<any> = [];
         for (let i = 0; i < n; i++) {
             const room: Room = createRoom(i);
-            batch.push({id: null, data:room})
+            batch.push({id: 'test_'+i, data:room})
         }
 
-        await this.asyncBatch(C.BatchType.Create, batch);
+        await this.asyncBatch(C.BatchType.CreateWithId, batch);
     }
 }

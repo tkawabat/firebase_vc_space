@@ -29,7 +29,7 @@ export function createUser(id: string): User {
         name: id,
         photo: photo,
         greeting: RandomUtil.getRandomLengthText(C.MaxGreeting),
-        tags: [],
+        tags: RandomUtil.takeRandom(['a','b','c','d','e']),
         twitterId: id,
         blocks: [],
         times: [],

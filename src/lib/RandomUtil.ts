@@ -25,3 +25,7 @@ export function getText(length: number) {
 export function getRandomLengthText(max: number) {
     return getText(getInt(max));
 }
+
+export function takeRandom<T>(list: Array<T>, probability: number = 0.5): Array<T> {
+    return list.filter((v) => Math.random() < probability);
+}
