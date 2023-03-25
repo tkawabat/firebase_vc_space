@@ -15,7 +15,7 @@ export async function prompt(msg: string): Promise<string> {
 function question(question: string): Promise<string> {
   const readlineInterface = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
   });
   return new Promise<string>((resolve) => {
     readlineInterface.question(question, (answer) => {
