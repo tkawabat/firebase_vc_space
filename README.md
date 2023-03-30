@@ -1,9 +1,18 @@
 ### 環境構築
 * 設定ファイルのダウンロード
-    * Firestoreのコンソールからサービスアカウントのjsonをダウンロード
-    * secディレクトリ以下に配置
-    * Constファイルにパスを書き込む
-```
+  * Firestoreのコンソールからサービスアカウントのjsonをダウンロード
+  * secディレクトリ以下に配置
+  * Constファイルにパスを書き込む
+* supabaseの情報を設定
+  * ファイルをコピー
+
+  ```
+  $ cp functions/.env.{sample,vc-space}
+  $ cp functions/.env.{sample,vc-space-dev}
+  ```
+
+  * supabaseのWebUIのAPI欄からURLとsecretキーをコピー
+
 
 ### 環境切り替え
 ```
@@ -12,9 +21,20 @@ $ firebase use production
 ```
 
 ### Functionsの開発
+* 型ファイル作成
+  ```
+  $ mv <supabaseリポジトリ>
+  $ supabase gen types typescript --linked > SupabaseSchema.ts
+  ```
+* lib以下に配置
+
+* ローカルでサービング
 ```
+$ npm run build
 $ firebase serve --only functions
 ```
+
+  * ソース更新時はbuildをする
 
 ### Functionsのデプロイ
 ```
