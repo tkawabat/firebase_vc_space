@@ -37,6 +37,7 @@ export default class ModelBase {
     const g = ArrayUtil.batchGenerator(data, this.batchSize);
     let current = g.next();
     while (!current.done) {
+      if (!current.value) continue;
       switch (type) {
         case C.BatchType.Create:
           current.value.forEach((v) => batch.set(this._ref.doc(), v.data));

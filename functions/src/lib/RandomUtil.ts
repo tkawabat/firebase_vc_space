@@ -33,5 +33,5 @@ export function takeRandom<T>(
   list: Array<T>,
   probability = 0.5
 ): Array<T> {
-  return list.filter((v) => Math.random() < probability);
+  return list.filter(() => Math.random() < probability);
 }
