@@ -23,7 +23,7 @@ export default class PushService {
 
     if (noticeList.data == null || noticeList.data.length == 0) {
       functions.logger.info('no notice data');
-      return;
+      return true;
     }
 
     // Push送信
@@ -83,5 +83,7 @@ export default class PushService {
         'notice_id',
         noticeList.data.map((notice) => notice.notice_id)
       );
+
+    return true;
   }
 }

@@ -6,16 +6,17 @@ import PushService from './service/PushService';
 initializeApp({ credential: credential.applicationDefault() });
 
 export const sendPush = functions
+  .region('asia-northeast1')
   .runWith({ timeoutSeconds: 300 })
   // for local develop
   // .https.onRequest(async (request, response) => {
-  .pubsub.schedule('every 1 minutes')
+  .pubsub.schedule('every 2 minutes')
   .timeZone('Asia/Tokyo')
-  .onRun(() => {
+  .onRun(async () => {
     const pushService = new PushService();
-    pushService.sendPush();
+    await pushService.sendPush();
 
     // for local develop
     // response.send('Hello from Firebase!');
-    return;
+    return true;
   });
