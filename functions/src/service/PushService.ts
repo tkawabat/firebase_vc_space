@@ -1,20 +1,26 @@
 import * as functions from 'firebase-functions';
 import { getMessaging, Message } from 'firebase-admin/messaging';
-import { defineString } from 'firebase-functions/params';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Database } from '../lib/SupabaseSchema';
 
 export default class PushService {
-  public async sendPush() {
-    const supabase = createClient<Database>(
-      defineString('SUPABASE_URL').value(),
-      defineString('SUPABASE_SECRET_KEY').value()
+  supabase: SupabaseClient | undefined;
+
+  setSupabase(url: string, secretKey: string) {
+    if (this.supabase != undefined) return;
+    console.log('connect to supabase');
+    this.supabase = createClient<Database>(
+      url, secretKey
     );
+  }
+
+  public async sendPush() {
+    if (this.supabase == undefined) return false;
 
     // データ取得
     const date = new Date();
     date.setMinutes(date.getMinutes() - 5);
-    const noticeList = await supabase
+    const noticeList = await this.supabase
       .from('v_notice_push')
       .select('*')
       .filter('created_at', 'gte', date.toISOString());
@@ -76,7 +82,7 @@ export default class PushService {
 
     // データ更新
     functions.logger.info(noticeList.data.map((notice) => notice.notice_id));
-    await supabase
+    await this.supabase
       .from('notice')
       .update({ pushed: true })
       .in(
